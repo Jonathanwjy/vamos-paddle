@@ -1,6 +1,7 @@
 import { ModeToggle } from "@/src/components/dark-mode-toggle";
 import { Button } from "@/src/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -39,7 +40,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
           <Button size="lg" className="cursor-pointer">
-            Click me
+            <Link href="/login">Login</Link>
           </Button>
         </div>
       </main>

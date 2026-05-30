@@ -1,4 +1,4 @@
-import { environment } from "@/configs/environment";
+import { environment } from "@/src/app/configs/environment";
 import { createBrowserClient } from "@supabase/ssr";
 
 export function createClient() {
