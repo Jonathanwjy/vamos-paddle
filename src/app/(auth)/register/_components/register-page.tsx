@@ -1,10 +1,10 @@
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 
-export default function Login() {
+export default function Register() {
   return (
     <Card className="text-center">
       <CardTitle className="text-lg">Welcome to our application</CardTitle>
-      <CardDescription>Login</CardDescription>
+      <CardDescription>Register</CardDescription>
     </Card>
   );
 }

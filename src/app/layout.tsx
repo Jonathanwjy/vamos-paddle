@@ -3,8 +3,12 @@ import { Geist, Geist_Mono, Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/src/lib/utils";
 import { ThemeProvider } from "@/src/components/theme-provider";
+import Navbar from "../components/common/app-navbar";
 
-const spaceGrotesk = Space_Grotesk({subsets:['latin'],variable:'--font-sans'});
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,6 +50,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Navbar />
           {children}
         </ThemeProvider>
       </body>

@@ -1,4 +1,4 @@
-import { Coffee, TowelRack } from "lucide-react";
+import { Coffee, TowelRack, Trophy } from "lucide-react";
 import { ReactNode } from "react";
 
 type AuthLayoutProps = {
@@ -10,10 +10,8 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
     <div className="relative bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
       <div className="flex w-full max-w-sm flex-col gap-6">
         <div className="flex items-center gap-2 self-center font-medium">
-          <div className="bg-teal-500 flex p-2 items-center justify-center rounded-md">
-            <TowelRack className="size-4" />
-          </div>
-          WPU Cafe
+          <div className="bg-primary flex p-2 items-center justify-center rounded-md"></div>
+          VAMOS PADDLE
         </div>
         {children}
       </div>

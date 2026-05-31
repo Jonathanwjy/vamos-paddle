@@ -23,4 +23,12 @@ export const NAVBAR_LIST = [
     title: "Reservation",
     url: "/reservation",
   },
+  {
+    title: "Login",
+    url: "/login",
+  },
+  {
+    title: "Register",
+    url: "/register",
+  },
 ];
