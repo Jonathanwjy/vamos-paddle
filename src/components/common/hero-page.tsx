@@ -77,13 +77,20 @@ function BannerCard({ slide }: { slide: BannerSlide }) {
   );
 }
 
+// PERHATIKAN BARIS INI: Harus pakai "export default function"
 export default function HeroCarousel() {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
 
-  React.useEffect(() => {
-    if (!api) return;
+  console.log("Mencoba merender Carousel...");
 
+  React.useEffect(() => {
+    if (!api) {
+      console.log("API Carousel belum siap");
+      return;
+    }
+
+    console.log("API Carousel siap!");
     const interval = setInterval(() => {
       if (api.canScrollNext()) {
         api.scrollNext();
@@ -111,17 +118,18 @@ export default function HeroCarousel() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        {/* Tombol Next & Prev ditutup sementara untuk tes */}
+        {/* <CarouselPrevious /> */}
+        {/* <CarouselNext /> */}
       </Carousel>
 
-      <div className="flex justify-center gap-1.5">
+      <div className="flex justify-center gap-1.5 pb-4">
         {banners.map((_, i) => (
           <button
             key={i}
             onClick={() => api?.scrollTo(i)}
             className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === current ? "w-5 bg-primary" : "w-1.5 bg-muted-foreground/30"
+              i === current ? "w-5 bg-white" : "w-1.5 bg-white/30"
             }`}
             aria-label={`Slide ${i + 1}`}
           />
