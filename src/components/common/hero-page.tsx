@@ -82,9 +82,6 @@ export default function HeroCarousel() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        {/* Tombol Next & Prev ditutup sementara untuk tes */}
-        <CarouselPrevious />
-        <CarouselNext />
       </Carousel>
 
       <div className="flex justify-center gap-1.5 pb-4">
