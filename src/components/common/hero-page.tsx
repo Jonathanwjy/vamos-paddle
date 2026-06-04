@@ -13,24 +13,20 @@ import {
 interface BannerSlide {
   id: number;
   image: string;
-
 }
 
 const banners: BannerSlide[] = [
   {
     id: 1,
     image: "/images/carousel-1.png",
-   
   },
   {
     id: 2,
     image: "/images/carousel-2.png",
-   
   },
   {
     id: 3,
     image: "/images/carousel-3.png",
-    
   },
 ];
 
@@ -39,7 +35,6 @@ function BannerCard({ slide }: { slide: BannerSlide }) {
     <div className="relative w-full h-[320px] sm:h-[400px] rounded-xl overflow-hidden select-none">
       <img
         src={slide.image}
-
         className="absolute inset-0 w-full h-full object-cover"
         draggable={false}
       />
@@ -76,7 +71,7 @@ export default function HeroCarousel() {
   }, [api]);
 
   return (
-    <div className="w-full space-y-3 min-h-[200px]">
+    <div className="w-full space-y-3 min-h-[400px]">
       <Carousel setApi={setApi} className="w-full">
         <CarouselContent>
           {banners.map((banner) => (

@@ -33,9 +33,12 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-sm font-semibold tracking-tight">
-            🏸 CourtBook
+        <Link href="/" className="flex items-center gap-1">
+          <span className="text-sm font-black tracking-tight text-foreground">
+            Court
+          </span>
+          <span className="text-sm font-black tracking-tight text-primary">
+            Book
           </span>
         </Link>
 
@@ -50,25 +53,17 @@ export default function Navbar() {
                     <Link
                       href={link.url}
                       className={cn(
-                        // Base
-                        "relative inline-flex h-9 items-center rounded-lg px-2.5 py-1.5 text-xs/relaxed font-medium transition-colors focus:outline-none",
-                        // Warna teks
+                        "group/navlink relative inline-flex h-9 items-center rounded-lg px-2.5 py-1.5 text-xs/relaxed font-medium transition-colors focus:outline-none",
+                        "hover:bg-transparent focus:bg-transparent",
                         isActive
                           ? "text-primary"
                           : "text-muted-foreground hover:text-foreground",
-                        // Hapus bg hover bawaan, kita pakai underline
-                        "hover:bg-transparent focus:bg-transparent",
-                        // Group untuk animasi underline
-                        "group/navlink",
                       )}
                     >
                       {link.title}
-
-                      {/* Animated underline */}
                       <span
                         className={cn(
                           "absolute bottom-0.5 left-2.5 h-[2px] rounded-full bg-primary transition-all duration-300 ease-out",
-                          // Active: garis penuh, Hover: animasi dari 0 ke penuh
                           isActive
                             ? "w-[calc(100%-20px)]"
                             : "w-0 group-hover/navlink:w-[calc(100%-20px)]",
@@ -89,24 +84,27 @@ export default function Navbar() {
             <NavigationMenuItem>
               {isLoggedIn ? (
                 <>
-                  <NavigationMenuTrigger className="gap-2 px-2.5">
+                  <NavigationMenuTrigger className="gap-2 px-2.5 text-foreground">
                     <Avatar className="size-6">
                       <AvatarImage
                         src={profile.avatar_url ?? undefined}
                         alt={profile.name ?? "User"}
                       />
-                      <AvatarFallback className="text-[10px] font-semibold">
+                      <AvatarFallback className="bg-primary/10 text-[10px] font-semibold text-primary">
                         {profile.name?.charAt(0).toUpperCase() ?? "U"}
                       </AvatarFallback>
                     </Avatar>
-                    <span className="hidden text-xs sm:inline">
+                    <span className="hidden text-xs text-foreground sm:inline">
                       {profile.name?.split(" ")[0] ?? "Profile"}
                     </span>
                   </NavigationMenuTrigger>
 
-                  <NavigationMenuContent className="right-0 left-auto min-w-48">
-                    <div className="border-b border-border/60 px-3 py-2.5">
-                      <p className="text-xs font-medium">{profile.name}</p>
+                  <NavigationMenuContent className="left-auto right-0 min-w-48 rounded-xl border border-border bg-popover text-popover-foreground shadow-md">
+                    {/* User info header */}
+                    <div className="border-b border-border px-3 py-2.5">
+                      <p className="text-xs font-semibold text-popover-foreground">
+                        {profile.name}
+                      </p>
                       <p className="text-[11px] text-muted-foreground">
                         {user.email}
                       </p>
@@ -116,7 +114,7 @@ export default function Navbar() {
                       <NavigationMenuLink asChild>
                         <Link
                           href="/profile"
-                          className="flex items-center gap-2 rounded-md px-2.5 py-2 text-xs transition-colors hover:bg-muted"
+                          className="flex items-center gap-2 rounded-md px-2.5 py-2 text-xs text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
                         >
                           <User className="size-4 text-muted-foreground" />
                           Lihat Profil
@@ -125,7 +123,7 @@ export default function Navbar() {
 
                       <button
                         onClick={() => signOut()}
-                        className="flex w-full items-center gap-2 rounded-md px-2.5 py-2 text-xs text-destructive transition-colors hover:bg-destructive/10"
+                        className="flex w-full items-center gap-2 rounded-md px-2.5 py-2 text-xs text-destructive transition-colors hover:bg-destructive/10 hover:text-destructive"
                       >
                         <LogOut className="size-4" />
                         Logout
@@ -135,17 +133,19 @@ export default function Navbar() {
                 </>
               ) : (
                 <>
-                  <NavigationMenuTrigger className="gap-2 px-2.5">
-                    <UserCircle className="size-4" />
-                    <span className="hidden text-xs sm:inline">Login</span>
+                  <NavigationMenuTrigger className="gap-2 px-2.5 text-foreground">
+                    <UserCircle className="size-4 text-muted-foreground" />
+                    <span className="hidden text-xs text-foreground sm:inline">
+                      Login
+                    </span>
                   </NavigationMenuTrigger>
 
-                  <NavigationMenuContent className="right-0 left-auto min-w-40">
+                  <NavigationMenuContent className="left-auto right-0 min-w-40 rounded-xl border border-border bg-popover text-popover-foreground shadow-md">
                     <div className="p-1">
                       <NavigationMenuLink asChild>
                         <Link
                           href="/login"
-                          className="flex items-center gap-2 rounded-md px-2.5 py-2 text-xs transition-colors hover:bg-muted"
+                          className="flex items-center gap-2 rounded-md px-2.5 py-2 text-xs text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
                         >
                           <LogIn className="size-4 text-muted-foreground" />
                           Login
@@ -155,7 +155,7 @@ export default function Navbar() {
                       <NavigationMenuLink asChild>
                         <Link
                           href="/register"
-                          className="flex items-center gap-2 rounded-md px-2.5 py-2 text-xs transition-colors hover:bg-muted"
+                          className="flex items-center gap-2 rounded-md px-2.5 py-2 text-xs text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
                         >
                           <UserPlus className="size-4 text-muted-foreground" />
                           Register

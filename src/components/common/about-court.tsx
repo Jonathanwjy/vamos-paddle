@@ -4,95 +4,8 @@ import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Check, MapPin, Sun, CloudRain, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const courtsInfo = [
-  {
-    id: 1,
-    name: "VIP Panoramic Indoor",
-    type: "Indoor",
-    price: "Rp 250.000",
-    period: "/ jam",
-    surface: "Mondo Supercourt XN",
-    description:
-      "Lapangan premium dengan kaca panoramik penuh untuk pengalaman bermain dan menonton terbaik. Bebas cuaca panas dan hujan.",
-    features: [
-      "Full AC",
-      "Kaca Panoramik 360°",
-      "Lampu LED Standar WPT",
-      "Tribun Mini",
-    ],
-    icon: CloudRain,
-    tag: "PALING POPULER",
-    imageUrl:
-      "https://images.unsplash.com/photo-1628292262973-10d937a098ed?w=800&q=80",
-  },
-  {
-    id: 2,
-    name: "Pro Outdoor Blue",
-    type: "Outdoor",
-    price: "Rp 150.000",
-    period: "/ jam",
-    surface: "Texturized Artificial Grass",
-    description:
-      "Nikmati bermain di bawah langit terbuka. Sangat cocok untuk sesi pagi atau sore hari dengan sirkulasi udara alami yang segar.",
-    features: [
-      "Udara Terbuka",
-      "Lampu Sorot 800W",
-      "Area Duduk Santai",
-      "Kaca Standar 12mm",
-    ],
-    icon: Sun,
-    tag: null,
-    imageUrl:
-      "https://images.unsplash.com/photo-1622279457486-62dcc4a631d6?w=800&q=80",
-  },
-  {
-    id: 3,
-    name: "Standard Semi-Indoor",
-    type: "Semi-Indoor",
-    price: "Rp 200.000",
-    period: "/ jam",
-    surface: "Synthetic Turf",
-    description:
-      "Solusi sempurna: sirkulasi udara luar ruangan dengan atap kanopi tinggi yang melindungimu dari hujan dan terik matahari langsung.",
-    features: [
-      "Atap Kanopi Tinggi",
-      "Kipas Angin Besar",
-      "Pencahayaan Optimal",
-      "Kaca Standar 10mm",
-    ],
-    icon: MapPin,
-    tag: null,
-    imageUrl:
-      "https://images.unsplash.com/photo-1599474924187-334a4ae5bd3c?w=800&q=80",
-  },
-];
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 32 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
-const stagger: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12 },
-  },
-};
-
-const cardAnim: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+import { cardReveal, fadeUp, stagger } from "@/src/utils/variants";
+import { COURTS } from "@/src/constants/welcome-constant";
 
 export default function CourtsPage() {
   return (
@@ -189,14 +102,14 @@ export default function CourtsPage() {
             variants={stagger}
             className="grid grid-cols-1 gap-6 lg:grid-cols-3"
           >
-            {courtsInfo.map((court, idx) => {
+            {COURTS.map((court, idx) => {
               const TypeIcon = court.icon;
               const isFeatured = court.tag !== null;
 
               return (
                 <motion.article
                   key={court.id}
-                  variants={cardAnim}
+                  variants={cardReveal}
                   className={[
                     "group relative flex flex-col overflow-hidden rounded-3xl border transition-all duration-300",
                     isFeatured
@@ -328,7 +241,7 @@ export default function CourtsPage() {
                     <th className="pb-3 text-left font-semibold text-foreground w-36">
                       Fitur
                     </th>
-                    {courtsInfo.map((c) => (
+                    {COURTS.map((c) => (
                       <th
                         key={c.id}
                         className="pb-3 text-center font-semibold text-foreground px-4"
